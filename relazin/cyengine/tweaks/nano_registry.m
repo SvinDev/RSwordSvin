@@ -5,12 +5,12 @@
 #import "nano_registry.h"
 #import "remote_objc.h"
 #import "../LogTextView.h"
-#import "../TaskRop/RemoteCall.h"
+#import "../TaskRop/cy_RemoteCall.h"
 #import "../kexploit/kexploit_opa334.h"
 #import "../kexploit/krw.h"
 #import "../kexploit/kutils.h"
-#import "../kexploit/offsets.h"
-#import "../kexploit/persistence.h"
+#import "../kexploit/cy_offsets.h"
+#import "../kexploit/cy_persistence.h"
 #import "../utils/sandbox.h"
 
 #import <CoreFoundation/CoreFoundation.h>

@@ -3,7 +3,7 @@
 //
 
 #import "remote_objc.h"
-#import "../TaskRop/RemoteCall.h"
+#import "../TaskRop/cy_RemoteCall.h"
 #import <pthread.h>
 #import <stdlib.h>
 #import <string.h>

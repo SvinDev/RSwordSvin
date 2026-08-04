@@ -4,7 +4,7 @@
 
 #import "powercuff.h"
 #import "remote_objc.h"
-#import "../TaskRop/RemoteCall.h"
+#import "../TaskRop/cy_RemoteCall.h"
 #import <stdio.h>
 #import <string.h>
 #import <unistd.h>

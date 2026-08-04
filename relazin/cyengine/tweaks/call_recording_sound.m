@@ -6,8 +6,8 @@
 #import "call_recording_sound.h"
 #import "../LogTextView.h"
 #import "../kexploit/kexploit_opa334.h"
-#import "../kexploit/persistence.h"
-#import "../kexploit/vnode.h"
+#import "../kexploit/cy_persistence.h"
+#import "../kexploit/cy_vnode.h"
 #import "../utils/sandbox.h"
 
 #import <Foundation/Foundation.h>

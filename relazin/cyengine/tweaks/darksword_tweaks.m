@@ -4,7 +4,7 @@
 
 #import "darksword_tweaks.h"
 #import "remote_objc.h"
-#import "../TaskRop/RemoteCall.h"
+#import "../TaskRop/cy_RemoteCall.h"
 #import <Foundation/Foundation.h>
 #import <stdio.h>
 #import <string.h>

@@ -13,8 +13,8 @@
 #import "../kexploit/kexploit_opa334.h"
 #import "../kexploit/krw.h"
 #import "../kexploit/kutils.h"
-#import "../kexploit/vnode.h"
-#import "../kexploit/offsets.h"
+#import "../kexploit/cy_vnode.h"
+#import "../kexploit/cy_offsets.h"
 #import "../research/sandbox_research.h"
 #import "../kexploit/kexploit_opa334.h"
 

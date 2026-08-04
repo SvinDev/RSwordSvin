@@ -11,7 +11,7 @@
 #import "../utils/sandbox.h"
 #import "../kexploit/kutils.h"
 #import "../kexploit/krw.h"
-#import "../kexploit/xpaci.h"
+#import "../kexploit/cy_xpaci.h"
 #import "../LogTextView.h"
 
 

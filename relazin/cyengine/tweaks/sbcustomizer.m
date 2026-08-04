@@ -4,7 +4,7 @@
 
 #import "sbcustomizer.h"
 #import "remote_objc.h"
-#import "../TaskRop/RemoteCall.h"
+#import "../TaskRop/cy_RemoteCall.h"
 #import <stdio.h>
 #import <unistd.h>
 #import "../LogTextView.h"

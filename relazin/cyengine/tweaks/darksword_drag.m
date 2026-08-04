@@ -10,7 +10,7 @@
 //
 
 #import "darksword_drag.h"
-#import "../TaskRop/RemoteCall.h"
+#import "../TaskRop/cy_RemoteCall.h"
 
 #import <dlfcn.h>
 #import <stdint.h>

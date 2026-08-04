@@ -8,7 +8,7 @@
 #import <Foundation/Foundation.h>
 
 #import "vnode_research.h"
-#import "../kexploit/vnode.h"
+#import "../kexploit/cy_vnode.h"
 #import "../kexploit/kutils.h"
 #import "../kexploit/krw.h"
 #import "apfs_fsnode.h"

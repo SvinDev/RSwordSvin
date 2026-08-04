@@ -7,7 +7,7 @@
 //  for the remote process too, since both share the same dyld shared cache.
 //
 
-#import "RemoteCall.h"                       // cyengine C API (this shim)
+#import "cy_RemoteCall.h"                       // cyengine C API (this shim)
 #import "../../kexploit/TaskRop/RemoteCall.h" // lara's engine
 #import <dlfcn.h>
 #import <pthread.h>

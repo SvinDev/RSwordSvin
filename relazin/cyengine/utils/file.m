@@ -7,10 +7,10 @@
 
 #include "file.h"
 #include "krw.h"
-#include "offsets.h"
-#include "vnode.h"
+#include "cy_offsets.h"
+#include "cy_vnode.h"
 #include "kutils.h"
-#include "xpaci.h"
+#include "cy_xpaci.h"
 #import "../kexploit/kexploit_opa334.h"
 
 #include <unistd.h>

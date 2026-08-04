@@ -7,7 +7,7 @@
 #import "remote_objc.h"
 #import "sb_walk.h"
 #import "../map_app.h"
-#import "../TaskRop/RemoteCall.h"
+#import "../TaskRop/cy_RemoteCall.h"
 #import "../LogTextView.h"
 
 #import <Foundation/Foundation.h>
