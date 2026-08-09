@@ -58,11 +58,9 @@ nothing..
 ## Credits
 
 - [SvinDev](https://github.com/SvinDev) — maintainer and Relazin integration
--
-— 
-- ChatGPT 5.6 Sol — development, integration, and CI debugging assistance
-
-This project was developed with assistance from ChatGPT 5.6 Sol.
+- 0xjohnnydev for Cyanide part
+— rooootdev for Lara part
+- GPT 5.6 Sol
 
 ## License
 
