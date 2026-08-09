@@ -16,6 +16,32 @@ uint64_t g_RC_targetProcOverride = 0;
 
 static RemoteCall *g_session = nil;
 static pthread_mutex_t gSessionLock = PTHREAD_MUTEX_INITIALIZER;
+static RemoteCallInitFailure gLastInitFailure = RemoteCallInitFailureNone;
+static uint32_t gLastInitFailurePid = 0;
+
+static RemoteCallInitFailure rc_classify_init_failure(NSString *error) {
+    if (!error.length) return RemoteCallInitFailureOther;
+
+    NSString *message = error.lowercaseString;
+    if ([message containsString:@"krw"] || [message containsString:@"kernel read"])
+        return RemoteCallInitFailureKRWUnavailable;
+    if ([message containsString:@"process"] &&
+        ([message containsString:@"missing"] || [message containsString:@"find"]))
+        return RemoteCallInitFailureProcessMissing;
+    if ([message containsString:@"task"] && [message containsString:@"invalid"])
+        return RemoteCallInitFailureInvalidTask;
+    if ([message containsString:@"exception port"])
+        return RemoteCallInitFailureExceptionPort;
+    if ([message containsString:@"exc_guard"] || [message containsString:@"task guard"])
+        return RemoteCallInitFailureTaskGuard;
+    if ([message containsString:@"bootstrap thread"] || [message containsString:@"extra thread"])
+        return RemoteCallInitFailureLocalThread;
+    if ([message containsString:@"no injectable"] || [message containsString:@"target thread"])
+        return RemoteCallInitFailureNoTargetThreads;
+    if ([message containsString:@"timeout"] || [message containsString:@"timed out"])
+        return RemoteCallInitFailureFirstExceptionTimeout;
+    return RemoteCallInitFailureOther;
+}
 
 static void *rc_sym(const char *name) {
     void *p = dlsym(RTLD_DEFAULT, name);
@@ -23,10 +49,21 @@ static void *rc_sym(const char *name) {
 }
 
 int init_remote_call(const char *process, bool useMigFilterBypass) {
-    if (!process) return -1;
+    if (!process || process[0] == '\0') {
+        gLastInitFailure = RemoteCallInitFailureProcessMissing;
+        gLastInitFailurePid = 0;
+        return -1;
+    }
     pthread_mutex_lock(&gSessionLock);
     g_session = [[RemoteCall alloc] initWithProcess:[NSString stringWithUTF8String:process]
                                  useMigFilterBypass:useMigFilterBypass];
+    if (g_session) {
+        gLastInitFailure = RemoteCallInitFailureNone;
+        gLastInitFailurePid = (uint32_t)g_session.pid;
+    } else {
+        gLastInitFailure = rc_classify_init_failure([RemoteCall lastInitError]);
+        gLastInitFailurePid = 0;
+    }
     pthread_mutex_unlock(&gSessionLock);
     return g_session ? 0 : -1;
 }
@@ -112,12 +149,44 @@ bool remote_call_has_local_state(void) {
     return g_session != nil;
 }
 
+bool remote_call_current_success(void) {
+    pthread_mutex_lock(&gSessionLock);
+    RemoteCall *s = g_session;
+    bool success = s != nil && s.pid > 0 && s.trojanMem != 0;
+    pthread_mutex_unlock(&gSessionLock);
+    return success;
+}
+
 int remote_call_current_pid(void) {
     return g_session ? (int)g_session.pid : -1;
 }
 
 bool remote_call_uses_vphone_bridge(void) {
     return false;
+}
+
+RemoteCallInitFailure remote_call_last_init_failure(void) {
+    return gLastInitFailure;
+}
+
+uint32_t remote_call_last_init_failure_pid(void) {
+    return gLastInitFailurePid;
+}
+
+const char *remote_call_init_failure_description(RemoteCallInitFailure failure) {
+    switch (failure) {
+        case RemoteCallInitFailureNone: return "none";
+        case RemoteCallInitFailureKRWUnavailable: return "KRW unavailable";
+        case RemoteCallInitFailureProcessMissing: return "process not found";
+        case RemoteCallInitFailureInvalidTask: return "invalid task";
+        case RemoteCallInitFailureExceptionPort: return "exception port setup failed";
+        case RemoteCallInitFailureTaskGuard: return "task EXC_GUARD setup failed";
+        case RemoteCallInitFailureLocalThread: return "local bootstrap thread setup failed";
+        case RemoteCallInitFailureNoTargetThreads: return "no injectable target threads";
+        case RemoteCallInitFailureFirstExceptionTimeout: return "target did not deliver bootstrap exception";
+        case RemoteCallInitFailureOther: return "other RemoteCall init failure";
+    }
+    return "unknown RemoteCall init failure";
 }
 
 // MARK: - RemoteCallSession wrapper

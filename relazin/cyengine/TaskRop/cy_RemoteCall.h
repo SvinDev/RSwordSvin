@@ -21,6 +21,19 @@
 // compatibility with cyanide; honored by the shim where possible).
 extern uint64_t g_RC_targetProcOverride;
 
+typedef enum {
+    RemoteCallInitFailureNone = 0,
+    RemoteCallInitFailureKRWUnavailable,
+    RemoteCallInitFailureProcessMissing,
+    RemoteCallInitFailureInvalidTask,
+    RemoteCallInitFailureExceptionPort,
+    RemoteCallInitFailureTaskGuard,
+    RemoteCallInitFailureLocalThread,
+    RemoteCallInitFailureNoTargetThreads,
+    RemoteCallInitFailureFirstExceptionTimeout,
+    RemoteCallInitFailureOther,
+} RemoteCallInitFailure;
+
 int      init_remote_call(const char *process, bool useMigFilterBypass);
 int      init_remote_call_with_first_exception_timeout(const char *process, bool useMigFilterBypass, int firstExceptionTimeoutMS);
 int      init_remote_call_original_thread_only_with_first_exception_timeout(const char *process, bool useMigFilterBypass, int firstExceptionTimeoutMS);
@@ -42,8 +55,12 @@ uint64_t remote_call_trojan_mem(void);
 int      destroy_remote_call(void);
 void     abandon_remote_call(void);
 bool     remote_call_has_local_state(void);
+bool     remote_call_current_success(void);
 int      remote_call_current_pid(void);
 bool     remote_call_uses_vphone_bridge(void);
+RemoteCallInitFailure remote_call_last_init_failure(void);
+uint32_t remote_call_last_init_failure_pid(void);
+const char *remote_call_init_failure_description(RemoteCallInitFailure failure);
 
 #ifdef __OBJC__
 
