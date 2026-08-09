@@ -55,7 +55,7 @@ enum tweakengine {
             // fetch dlerror() text from SpringBoard
             var errText = "unknown error"
             let errPtr = mgr.rccall(name: "dlerror", args: [], timeout: 2000)
-            if errPtr != 0, let s = sb[errPtr]?.string, !s.isEmpty {
+            if errPtr != 0, let s = sb[errPtr]?.string(), !s.isEmpty {
                 errText = s
             }
             globallogger.log("dlopen failed: \(errText)")
