@@ -972,7 +972,7 @@ static int nano_collect_pids_by_names(const char * const *target_names,
                                       pid_t *out, int out_capacity)
 {
     __block int n = 0;
-    uint64_t self_proc = proc_self();
+    uint64_t self_proc = cy_proc_self();
     int32_t uid_off = nano_probe_ucred_uid_offset(self_proc);
     if (uid_off >= 0) {
         printf("[NANO-PUSH] probed ucred cr_uid offset = 0x%x\n", uid_off);
@@ -980,7 +980,7 @@ static int nano_collect_pids_by_names(const char * const *target_names,
 
     void (^consider)(uint64_t) = ^(uint64_t proc) {
         if (n >= out_capacity) return;
-        char *name = proc_get_p_name(proc);
+        char *name = cy_proc_get_p_name(proc);
         if (!name) return;
         name[31] = '\0';
         bool matched = false;

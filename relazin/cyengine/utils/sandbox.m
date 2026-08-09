@@ -24,7 +24,7 @@
 // This is almost same behavior with sandbox_extension_consume with r/w on root
 // Confirmed works on iPhone 14 Pro/17.2.1, iPhone SE3/26.0
 int patch_sandbox_ext(void) {
-    uint64_t label = proc_get_cred_label(proc_self());
+    uint64_t label = proc_get_cred_label(cy_proc_self());
     uint64_t sbx = label_get_sandbox(label);
     struct sandbox_label sbx_lbl = {0};
     kreadbuf(sbx, &sbx_lbl, sizeof(struct sandbox_label));
@@ -93,14 +93,14 @@ int check_sandbox_var_rw(void) {
 int borrow_sandbox_ext(const char* process) {
     if (!process) return -1;
 
-    uint64_t victim_proc = proc_find_by_name(process);
+    uint64_t victim_proc = cy_proc_find_by_name(process);
     if (!victim_proc || victim_proc == (uint64_t)-1 || !is_kaddr_valid(victim_proc)) {
         printf("borrow_sandbox_ext: process not found: %s proc=0x%llx\n",
                process, victim_proc);
         return -1;
     }
 
-    uint64_t self_label = proc_get_cred_label(proc_self());
+    uint64_t self_label = proc_get_cred_label(cy_proc_self());
     if (!self_label || !is_kaddr_valid(self_label)) {
         printf("borrow_sandbox_ext: invalid self label=0x%llx\n", self_label);
         return -1;

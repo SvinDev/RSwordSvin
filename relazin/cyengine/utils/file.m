@@ -98,7 +98,7 @@ uint64_t overwrite_system_file(char* to, char* from) {
         return -1;
     }
     
-    uint64_t proc = proc_self();
+    uint64_t proc = cy_proc_self();
     
     // get vnode
     uint64_t fileprocPtrArr = kread64(proc + off_proc_p_fd + off_filedesc_fd_ofiles);
@@ -189,7 +189,7 @@ int zero_system_file_page(const char* path, off_t offset) {
         zerolen = (size_t)(file_sz - pageoff);
     }
 
-    uint64_t proc = proc_self();
+    uint64_t proc = cy_proc_self();
     uint64_t fileprocPtrArr = kread64(proc + off_proc_p_fd + off_filedesc_fd_ofiles);
     fileprocPtrArr = xpaci(fileprocPtrArr);
     uint64_t fileproc = kread64(fileprocPtrArr + (8 * fd));
