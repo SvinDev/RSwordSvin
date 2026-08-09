@@ -58,9 +58,8 @@ nothing..
 ## Credits
 
 - [SvinDev](https://github.com/SvinDev) — RSwordSvin maintainer and integration
-- 0xjohnnydev — Cyanide engine
-- rooootdev — Lara core
-- OpenAI GPT-5.6 Sol — development assistance
+- 0xjohnnydev — Cyanide 
+- rooootdev — Lara 
 
 ## License
 
