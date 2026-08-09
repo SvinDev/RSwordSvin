@@ -115,10 +115,16 @@ struct CyanideTweaksView: View {
     }
 
     private func run(_ title: String, _ action: @escaping () -> Bool) {
+        let operation = globallogger.beginOperation("Cyanide tweak: \(title)")
         busy = true
         DispatchQueue.global(qos: .userInitiated).async {
             let ok = action()
             DispatchQueue.main.async {
+                globallogger.finishOperation(
+                    operation,
+                    success: ok,
+                    detail: ok ? "applied" : "native tweak returned false"
+                )
                 log("\(ok ? "[*]" : "[!]") \(title): \(ok ? "ok" : "failed")")
                 busy = false
             }

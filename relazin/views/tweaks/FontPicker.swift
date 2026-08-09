@@ -89,12 +89,11 @@ struct FontPicker: View {
                 }
 	                
                 Section {
-                    Picker("Target Style", selection: $selectedTarget) {
-                        ForEach(styletarget.allCases, id: \.self) { target in
-                            Text(target.rawValue).tag(target)
-                        }
-                    }
-                    .pickerStyle(.segmented)
+                    TerminalOptionPicker(
+                        values: styletarget.allCases,
+                        selection: $selectedTarget,
+                        title: { $0.rawValue }
+                    )
                     .padding(.vertical, 5)
 
                     if !customfonts.isEmpty {

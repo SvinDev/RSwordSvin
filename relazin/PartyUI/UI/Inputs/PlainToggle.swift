@@ -30,23 +30,20 @@ public struct PlainToggle: View {
     
     public var body: some View {
         if doubleSystemVersion() >= minSupportedVersion && doubleSystemVersion() <= maxSupportedVersion {
-            Toggle(isOn: $isOn) {
-                HStack(spacing: 12) {
-                    if !icon.isEmpty {
-                        Image(systemName: icon)
-                            .frame(width: 20, alignment: .center)
-                    }
+            HStack(spacing: 8) {
+                Toggle(isOn: $isOn) {
                     Text(text)
-                    Spacer()
-                    if infoType == .info || infoType == .warning {
-                        Button(action: {
-                            Alertinator.shared.alert(title: infoTitle, body: infoMessage)
-                        }) {
-                            Image(systemName: infoType == .info ? "info.square" : "exclamationmark.triangle")
-                        }
-                        .buttonStyle(.plain)
-                        .padding(.trailing, 6)
+                }
+
+                if infoType == .info || infoType == .warning {
+                    Button(action: {
+                        Alertinator.shared.alert(title: infoTitle, body: infoMessage)
+                    }) {
+                        Text(infoType == .info ? "[i]" : "[!]")
+                            .font(.system(.body, design: .monospaced))
+                            .foregroundColor(infoType == .warning ? .orange : .secondary)
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }

@@ -110,6 +110,7 @@ final class laramgr: ObservableObject {
     
     func run(completion: ((Bool) -> Void)? = nil) {
         guard !dsrunning else { return }
+        let operation = globallogger.beginOperation("DarkSword exploit")
         dsrunning = true
         dsready = false
         dsfailed = false
@@ -155,6 +156,11 @@ final class laramgr: ObservableObject {
                     globallogger.log("exploit failed.")
                     globallogger.divider()
                 }
+                globallogger.finishOperation(
+                    operation,
+                    success: success,
+                    detail: success ? "kernel r/w ready" : "exploit returned \(result) or kernel r/w is unavailable"
+                )
                 self.dsprogress = 1.0
                 completion?(success)
             }
@@ -329,15 +335,18 @@ final class laramgr: ObservableObject {
     }
     
     func vfsoverwritefromlocalpath(target: String, source: String) -> Bool {
+        let operation = globallogger.beginOperation("VFS overwrite \(target)")
         print("(vfs) target \(source) -> \(target)")
         
         guard vfsready else {
             print("(vfs) not ready")
+            globallogger.finishOperation(operation, success: false, detail: "VFS not ready")
             return false
         }
         
         guard FileManager.default.fileExists(atPath: source) else {
             print("(vfs) source file not found: \(source)")
+            globallogger.finishOperation(operation, success: false, detail: "source file not found: \(source)")
             return false
         }
         
@@ -350,6 +359,12 @@ final class laramgr: ObservableObject {
         } else {
             print("(vfs) failed to overwrite file")
         }
+
+        globallogger.finishOperation(
+            operation,
+            success: r == 0,
+            detail: r == 0 ? "file overwritten" : "vfs_overwritefile returned \(r)"
+        )
         
         return r == 0
     }
@@ -396,8 +411,14 @@ final class laramgr: ObservableObject {
     
     @discardableResult
     func lara_overwritefile(target: String, source: String, fallback_vfs: Bool = true) -> (ok: Bool, message: String) {
+        let operation = globallogger.beginOperation("Overwrite \(target)")
+        func complete(_ result: (ok: Bool, message: String)) -> (ok: Bool, message: String) {
+            globallogger.finishOperation(operation, success: result.ok, detail: result.message)
+            return result
+        }
+
         guard FileManager.default.fileExists(atPath: source) else {
-            return (false, "source file not found: \(source)")
+            return complete((false, "source file not found: \(source)"))
         }
         
         let result: (ok: Bool, message: String)
@@ -413,44 +434,52 @@ final class laramgr: ObservableObject {
         }
         
         if result.ok {
-            return result
+            return complete(result)
         }
 
         guard fallback_vfs else {
-            return result
+            return complete(result)
         }
         
         guard vfsready else {
-            return (false, result.message + " | vfs not ready")
+            return complete((false, result.message + " | vfs not ready"))
         }
         
         let ok = vfsoverwritefromlocalpath(target: target, source: source)
-        return ok ? (true, "ok (vfs overwrite)") : (false, result.message + " | vfs overwrite failed")
+        return complete(ok ? (true, "ok (vfs overwrite)") : (false, result.message + " | vfs overwrite failed"))
     }
     
     @discardableResult
     func lara_overwritefile(target: String, data: Data, fallback_vfs: Bool = true) -> (ok: Bool, message: String) {
-        let result = sbxready ? sbxoverwrite(path: target, data: data) : (false, "sbx not ready")
-        if result.0 {
+        let operation = globallogger.beginOperation("Overwrite \(target)")
+        func complete(_ result: (ok: Bool, message: String)) -> (ok: Bool, message: String) {
+            globallogger.finishOperation(operation, success: result.ok, detail: result.message)
             return result
         }
 
+        let result = sbxready ? sbxoverwrite(path: target, data: data) : (false, "sbx not ready")
+        if result.0 {
+            return complete(result)
+        }
+
         guard fallback_vfs else {
-            return result
+            return complete(result)
         }
         
         guard vfsready else {
-            return (false, result.1 + ", vfs not ready")
+            return complete((false, result.1 + ", vfs not ready"))
         }
         
         let ok = vfsoverwritewithdata(target: target, data: data)
-        return ok ? (true, "vfs overwrite ok") : (false, result.1 + ", vfs overwrite failed")
+        return complete(ok ? (true, "vfs overwrite ok") : (false, result.1 + ", vfs overwrite failed"))
     }
     
     func vfszeropage(at path: String, dumb: Bool) -> Bool {
+        let operation = globallogger.beginOperation("VFS zero \(path)")
         if dumb {
             guard vfsready else {
                 self.logmsg("(vfs) zerofile failed (vfs not ready)")
+                globallogger.finishOperation(operation, success: false, detail: "VFS not ready")
                 return false
             }
     
@@ -458,10 +487,12 @@ final class laramgr: ObservableObject {
 
             if !ok {
                 self.logmsg("(vfs) zerofile failed")
+                globallogger.finishOperation(operation, success: false, detail: "vfs_zerofile failed")
                 return false
             }
             
             self.logmsg("(vfs) zeroed \(path)")
+            globallogger.finishOperation(operation, success: true, detail: "file zeroed")
             return true
         } else {
             let result = path.withCString { cpath in
@@ -470,10 +501,12 @@ final class laramgr: ObservableObject {
 
             if result != 0 {
                 self.logmsg("(vfs) zeropage failed")
+                globallogger.finishOperation(operation, success: false, detail: "vfs_zeropage returned \(result)")
                 return false
             }
     
             self.logmsg("(vfs) zeroed first page of \(path)")
+            globallogger.finishOperation(operation, success: true, detail: "first page zeroed")
             return true
         }
     }

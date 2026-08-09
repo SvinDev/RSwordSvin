@@ -39,8 +39,34 @@ struct LogsView: View {
                             }
                     }
                 }
+
+                if !logger.savedFailureLogs.isEmpty {
+                    Section {
+                        ForEach(logger.savedFailureLogs, id: \.path) { url in
+                            ShareLink(item: url) {
+                                HStack(spacing: 10) {
+                                    Text("!")
+                                        .foregroundColor(.red)
+                                    Text(url.deletingPathExtension().lastPathComponent)
+                                        .font(.system(size: 12, design: .monospaced))
+                                        .lineLimit(2)
+                                    Spacer()
+                                    Image(systemName: "square.and.arrow.up")
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Saved failure logs")
+                    } footer: {
+                        Text("Also available in Files → On My iPhone → RSwordSvin → RSwordSvin Logs. Interrupted operations are recovered after the next launch.")
+                    }
+                }
             }
             .navigationTitle("Logs")
+            .onAppear {
+                logger.refreshSavedFailureLogs()
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     ShareLink(item: logsURL) {

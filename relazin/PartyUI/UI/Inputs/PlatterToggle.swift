@@ -36,28 +36,22 @@ public struct PlatterToggle: View {
     
     public var body: some View {
         if doubleSystemVersion() >= minSupportedVersion && doubleSystemVersion() <= maxSupportedVersion {
-            Button(action: { isOn.toggle() }) {
-                HStack(spacing: 14) {
-                    if !icon.isEmpty {
-                        Image(systemName: icon)
-                            .frame(width: 20, alignment: .center)
-                    }
+            HStack(spacing: 8) {
+                Toggle(isOn: $isOn) {
                     Text(text)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    HStack(spacing: 12) {
-                        if infoType == .info || infoType == .warning {
-                            Button(action: {
-                                Alertinator.shared.alert(title: infoTitle, body: infoMessage)
-                            }) {
-                                Image(systemName: infoType == .info ? "info.square" : "exclamationmark.triangle")
-                            }
-                        }
-                        Image(systemName: isOn ? "checkmark.square.fill" : "square")
-                            .animation(.iconUpdate, value: isOn)
+                }
+
+                if infoType == .info || infoType == .warning {
+                    Button(action: {
+                        Alertinator.shared.alert(title: infoTitle, body: infoMessage)
+                    }) {
+                        Text(infoType == .info ? "[i]" : "[!]")
+                            .font(.system(.body, design: .monospaced))
+                            .foregroundColor(infoType == .warning ? .orange : .secondary)
                     }
+                    .buttonStyle(.plain)
                 }
             }
-            .buttonStyle(TranslucentButtonStyle())
         }
     }
 }

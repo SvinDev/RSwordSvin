@@ -49,16 +49,26 @@ struct dirtyZeroView: View {
     
     func applyTweaks() {
         let tweaks = tweakArray.flatMap { $0.tweaks }.filter { $0.isOn }
+        var failedPaths: [String] = []
         
         for tweak in tweaks {
             for path in tweak.paths {
-                _ = mgr.vfszeropage(at: path, dumb: true)
+                if !mgr.vfszeropage(at: path, dumb: true) {
+                    failedPaths.append(path)
+                }
             }
         }
-        
-        Alertinator.shared.alert(title: "Attempted to apply all tweaks!", body: "Please respring your device to see any changes. Zeroing files with DarkSword is finicky, so you may have to apply multiple times!", actionLabel: "Respring", action: {
-            mgr.respring()
-        })
+
+        if failedPaths.isEmpty {
+            Alertinator.shared.alert(title: "Tweaks Applied", body: "Please respring your device to see the changes.", actionLabel: "Respring", action: {
+                mgr.respring()
+            })
+        } else {
+            Alertinator.shared.alert(
+                title: "Some Tweaks Failed",
+                body: "Failed paths: \(failedPaths.count). Diagnostic logs were saved in Files → RSwordSvin → RSwordSvin Logs."
+            )
+        }
     }
 }
 

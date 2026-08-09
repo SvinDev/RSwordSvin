@@ -116,6 +116,7 @@ struct ScreenTimeView: View {
     }
 
     private func applyDisable() {
+        let operation = globallogger.beginOperation("Disable Screen Time")
         isWorking = true
         let agent = killScreenTimeAgent
         let usage = killUsageTrackingAgent
@@ -124,6 +125,11 @@ struct ScreenTimeView: View {
         DispatchQueue.global(qos: .userInitiated).async {
             let ok = screentime_disable(agent, usage, homed, family)
             DispatchQueue.main.async {
+                globallogger.finishOperation(
+                    operation,
+                    success: ok,
+                    detail: ok ? "Screen Time disabled; reboot required" : "screentime_disable returned false"
+                )
                 isWorking = false
                 if ok {
                     screenTimeDisabled = true
@@ -136,10 +142,16 @@ struct ScreenTimeView: View {
     }
 
     private func applyEnable() {
+        let operation = globallogger.beginOperation("Enable Screen Time")
         isWorking = true
         DispatchQueue.global(qos: .userInitiated).async {
             let ok = screentime_enable()
             DispatchQueue.main.async {
+                globallogger.finishOperation(
+                    operation,
+                    success: ok,
+                    detail: ok ? "Screen Time enabled; reboot required" : "screentime_enable returned false"
+                )
                 isWorking = false
                 if ok {
                     screenTimeDisabled = false

@@ -11,7 +11,7 @@ import SwiftUI
 enum terminal {
     static let bg = Color.black
     static let accent = Color(red: 1.0, green: 0.12, blue: 0.18)
-    static let green = Color(red: 0.35, green: 0.95, blue: 0.45)
+    static let green = Color.rsTerminalGreen
     static let dim = Color(white: 0.55)
     static let red = accent
     static let mono: Font = .system(.body, design: .monospaced)
@@ -103,9 +103,9 @@ struct terminalmenuitem: View {
         }) {
             HStack(spacing: 10) {
                 Text(highlighted || pressed ? "▸" : " ")
-                    .foregroundColor(terminal.accent)
+                    .foregroundColor(terminal.green)
                 Text(title)
-                    .foregroundColor(highlighted || pressed ? terminal.accent : .white)
+                    .foregroundColor(highlighted || pressed ? terminal.green : .white)
                 Spacer()
             }
             .font(.system(size: 22, weight: .medium, design: .monospaced))

@@ -26,7 +26,15 @@ enum tweakengine {
     /// The file is copied to /tmp first so SpringBoard can definitely read it.
     static func injectDylib(at path: String) -> (ok: Bool, detail: String) {
         guard isReady, let sb = mgr.sbProc else {
-            return (false, "RemoteCall not ready — run the exploit and init RemoteCall first (Advanced Options → Exploit & Actions).")
+            let detail = "RemoteCall not ready — run the exploit and init RemoteCall first (Advanced Options → Exploit & Actions)."
+            globallogger.saveFailureLog(context: "Inject dylib \(URL(fileURLWithPath: path).lastPathComponent)", detail: detail)
+            return (false, detail)
+        }
+
+        let operation = globallogger.beginOperation("Inject dylib \(URL(fileURLWithPath: path).lastPathComponent)")
+        func complete(_ result: (ok: Bool, detail: String)) -> (ok: Bool, detail: String) {
+            globallogger.finishOperation(operation, success: result.ok, detail: result.detail)
+            return result
         }
 
         // copy to a SpringBoard-readable location
@@ -38,14 +46,14 @@ enum tweakengine {
             try FileManager.default.copyItem(atPath: path, toPath: stage)
             try FileManager.default.setAttributes([.posixPermissions: 0o644], ofItemAtPath: stage)
         } catch {
-            return (false, "could not stage dylib: \(error.localizedDescription)")
+            return complete((false, "could not stage dylib: \(error.localizedDescription)"))
         }
 
         globallogger.log("injecting \(stage) into SpringBoard")
 
         let remotePath = stage.withCString { remote_alloc_str(sb, $0) }
         guard remotePath != 0 else {
-            return (false, "remote string allocation failed")
+            return complete((false, "remote string allocation failed"))
         }
 
         let RTLD_NOW: UInt64 = 0x2
@@ -59,11 +67,11 @@ enum tweakengine {
                 errText = s
             }
             globallogger.log("dlopen failed: \(errText)")
-            return (false, "dlopen failed: \(errText)")
+            return complete((false, "dlopen failed: \(errText)"))
         }
 
         globallogger.log("dylib loaded, handle \(hex(handle))")
-        return (true, "loaded — handle \(hex(handle))")
+        return complete((true, "loaded — handle \(hex(handle))"))
     }
 
     // MARK: - .js runtime
@@ -76,17 +84,26 @@ enum tweakengine {
     ///   log(msg)                  → print to the output console
     static func runJS(source: String, output: @escaping (String) -> Void) {
         guard isReady, let sb = mgr.sbProc else {
-            output("[!] RemoteCall not ready — run the exploit and init RemoteCall first.")
+            let detail = "RemoteCall not ready — run the exploit and init RemoteCall first."
+            output("[!] \(detail)")
+            globallogger.saveFailureLog(context: "Run JavaScript tweak", detail: detail)
             return
         }
+
+        let operation = globallogger.beginOperation("Run JavaScript tweak")
 
         guard let ctx = JSContext() else {
             output("[!] could not create JSContext")
+            globallogger.finishOperation(operation, success: false, detail: "could not create JSContext")
             return
         }
 
+        var exceptionMessage: String?
         ctx.exceptionHandler = { _, exc in
-            output("[!] js exception: \(exc?.toString() ?? "unknown")")
+            let message = exc?.toString() ?? "unknown"
+            exceptionMessage = message
+            output("[!] js exception: \(message)")
+            globallogger.log("(js) exception: \(message)")
         }
 
         let rcFn: @convention(block) (String, [String]) -> String = { name, args in
@@ -113,11 +130,17 @@ enum tweakengine {
 
         let logFn: @convention(block) (String) -> Void = { msg in
             output(msg)
+            globallogger.log("(js) \(msg)")
         }
         ctx.setObject(logFn, forKeyedSubscript: "log" as NSString)
 
         output("[*] running tweak…")
         ctx.evaluateScript(source)
-        output("[*] done")
+        if let exceptionMessage {
+            globallogger.finishOperation(operation, success: false, detail: "JavaScript exception: \(exceptionMessage)")
+        } else {
+            output("[*] done")
+            globallogger.finishOperation(operation, success: true, detail: "script completed")
+        }
     }
 }

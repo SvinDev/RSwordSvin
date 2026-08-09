@@ -444,7 +444,8 @@ struct GestaltView: View {
                 throw "Overwrite failed: \(result.message)"
             }
         } catch {
-            Alertinator.shared.alert(title: "Failed to overwrite MobileGestalt!", body: "\(error)")
+            globallogger.saveFailureLog(context: "Apply MobileGestalt", detail: "\(error)")
+            Alertinator.shared.alert(title: "Failed to overwrite MobileGestalt!", body: "\(error)\n\nA diagnostic log was saved in Files → RSwordSvin → RSwordSvin Logs.")
         }
     }
     

@@ -87,7 +87,8 @@ struct LiquidGlassView: View {
                 throw "Overwrite failed: \(result.message)"
             }
         } catch {
-            Alertinator.shared.alert(title: "Failed to enable Liquid Glass Tweaks!", body: "\(error)")
+            globallogger.saveFailureLog(context: "Apply Liquid Glass", detail: "\(error)")
+            Alertinator.shared.alert(title: "Failed to enable Liquid Glass Tweaks!", body: "\(error)\n\nA diagnostic log was saved in Files → RSwordSvin → RSwordSvin Logs.")
         }
     }
     

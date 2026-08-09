@@ -524,15 +524,18 @@ struct RemoteView: View {
 
     private func run(_ name: String, _ work: @escaping () -> String, onComplete: ((String) -> Void)? = nil) {
         guard mgr.rcready, !running else { return }
+        let operation = globallogger.beginOperation("RemoteCall tweak: \(name)")
         running = true
         mgr.logmsg("(rc) \(name)...")
 
         DispatchQueue.global(qos: .userInitiated).async {
             let result = work()
             DispatchQueue.main.async {
+                let failed = self.isRemoteCallFailure(result)
                 self.mgr.logmsg("(rc) \(result)")
+                globallogger.finishOperation(operation, success: !failed, detail: result)
                 onComplete?(result)
-                if self.isRemoteCallFailure(result) {
+                if failed {
                     Alertinator.shared.alert(title: "\(name) Failed", body: result)
                 }
                 self.running = false

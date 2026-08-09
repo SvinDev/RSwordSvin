@@ -94,13 +94,11 @@ struct SpringBoardView: View {
                 ForEach($tweakOptions) { $option in
                     if doubleSystemVersion() <= option.maxVers {
                         Section(header: HeaderLabel(text: option.title, icon: option.imageName)) {
-                            Picker("Option", selection: $option.selectedOption) {
-                                ForEach(0..<option.options.count) { ind in
-                                    Text(option.options[ind]).tag(option.options[ind])
-                                }
-                            }
-                            .labelsHidden()
-                            .pickerStyle(.segmented)
+                            TerminalOptionPicker(
+                                values: option.options,
+                                selection: $option.selectedOption,
+                                title: { $0 }
+                            )
                             .onChange(of: option.selectedOption) { newvalue in
                                 option.value = newvalue
                                 UserDefaults.standard.set(newvalue, forKey: option.key)
@@ -182,6 +180,7 @@ struct SpringBoardView: View {
     }
 
     func applyTweaks() {
+        let operation = globallogger.beginOperation("Apply SpringBoard tweaks")
         var failed: Bool = false
         for option in tweakOptions {
             //  apply tweak
@@ -209,6 +208,7 @@ struct SpringBoardView: View {
                             print("Successfully applied tweak \"" + option.title + "\"")
                         } else {
                             print("Failed to apply tweak \"" + option.title + "\"!!!")
+                            failed = true
                         }
                     } else {
                         do {
@@ -217,6 +217,7 @@ struct SpringBoardView: View {
                         } catch {
                             print("Failed to apply tweak \"" + option.title + "\"!!!")
                             print(error.localizedDescription)
+                            failed = true
                         }
                     }
                 } else {
@@ -225,6 +226,7 @@ struct SpringBoardView: View {
                         print("Successfully applied tweak \"" + option.title + "\"")
                     } else {
                         print("Failed to apply tweak \"" + option.title + "\"!!!")
+                        failed = true
                     }
                 }
                 
@@ -244,8 +246,13 @@ struct SpringBoardView: View {
                 }
             }
         }
+        globallogger.finishOperation(
+            operation,
+            success: !failed,
+            detail: failed ? "one or more SpringBoard tweaks failed" : "all selected tweaks applied"
+        )
         if failed {
-            Alertinator.shared.alert(title: "useless ass alert", body: "something failed while applying tweaks")
+            Alertinator.shared.alert(title: "Apply Failed", body: "One or more tweaks failed. A diagnostic log was saved in Files → RSwordSvin → RSwordSvin Logs.")
         } else {
             Alertinator.shared.alert(title: "Success!", body: "Respring to see changes.", actionLabel: "Respring", action: { mgr.respring() })
         }
@@ -284,7 +291,7 @@ struct SpringBoardView: View {
                             print("it didn't")
                         }
                         
-                        return true
+                        return result.ok
                     }
                 }
                 return succeeded

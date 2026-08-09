@@ -59,12 +59,11 @@ struct SettingsView: View {
                 }
                 
                 Section(header: HeaderLabel(text: "Exploit", icon: "ant")) {
-                    Picker("", selection: $selectedMethod) {
-                        ForEach(method.allCases, id: \.self) { method in
-                            Text(method.rawValue).tag(method)
-                        }
-                    }
-                    .pickerStyle(.segmented)
+                    TerminalOptionPicker(
+                        values: method.allCases,
+                        selection: $selectedMethod,
+                        title: { $0.rawValue }
+                    )
                     
                     NavigationLink("Modify Offsets", destination: OffsetManagementView())
                 }

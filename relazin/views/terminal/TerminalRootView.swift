@@ -91,7 +91,7 @@ private struct terminalmenulabel: View {
     var body: some View {
         HStack(spacing: 10) {
             Text(" ")
-                .foregroundColor(terminal.accent)
+                .foregroundColor(terminal.green)
             Text(title)
                 .foregroundColor(.white)
             Spacer()
