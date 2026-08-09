@@ -7,6 +7,7 @@ mkdir -p build
 echo "Build Started!"
 echo
 
+set +e
 xcodebuild \
   -project relazin.xcodeproj \
   -scheme relazin \
@@ -18,7 +19,16 @@ xcodebuild \
   CODE_SIGN_IDENTITY="" \
   CODE_SIGN_ENTITLEMENTS="Config/relazin.entitlements" \
   archive \
-  -archivePath "$PWD/build/relazin.xcarchive" 2>&1 | xcpretty
+  -archivePath "$PWD/build/relazin.xcarchive" 2>&1 | tee "$PWD/build/xcodebuild.log" | xcpretty
+build_status=${PIPESTATUS[0]}
+set -e
+
+if [ "$build_status" -ne 0 ]; then
+  echo
+  echo "xcodebuild failed with status $build_status. Last 150 raw log lines:"
+  tail -n 150 "$PWD/build/xcodebuild.log"
+  exit "$build_status"
+fi
 
 APP_PATH="$PWD/build/relazin.xcarchive/Products/Applications/relazin.app"
 if [ ! -d "$APP_PATH" ]; then
