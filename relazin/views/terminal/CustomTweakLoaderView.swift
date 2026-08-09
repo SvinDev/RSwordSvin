@@ -3,7 +3,7 @@
 //  relazin
 //
 //  Load custom tweaks at runtime — no IPA rebuild:
-//   • drop .js / .dylib into Files → On My iPhone → relazin → tweaks/
+//   • drop .js / .dylib into Files → On My iPhone → RSwordSvin → tweaks/
 //   • or pick any file with the system picker
 //   • .js runs in the JS engine, .dylib gets injected into SpringBoard
 //
@@ -19,7 +19,7 @@ struct CustomTweakLoaderView: View {
     @State private var showPicker = false
     @State private var busy = false
 
-    /// Files → On My iPhone → relazin → tweaks
+    /// Files → On My iPhone → RSwordSvin → tweaks
     private var tweaksDir: URL {
         let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("tweaks", isDirectory: true)
@@ -42,7 +42,7 @@ struct CustomTweakLoaderView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
                         if tweaks.isEmpty {
-                            Text("no tweaks found.\n\ndrop .js or .dylib files into\nFiles → On My iPhone → relazin → tweaks/\nor tap [ pick file ] below.")
+                            Text("no tweaks found.\n\ndrop .js or .dylib files into\nFiles → On My iPhone → RSwordSvin → tweaks/\nor tap [ pick file ] below.")
                                 .font(.system(size: 14, design: .monospaced))
                                 .foregroundColor(terminal.dim)
                                 .padding(.vertical, 14)

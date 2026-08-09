@@ -523,6 +523,8 @@
 					"$(SRCROOT)/relazin/kexploit",
 				);
 				INFOPLIST_FILE = relazin/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RSwordSvin;
+				INFOPLIST_KEY_CFBundleName = RSwordSvin;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -540,7 +542,7 @@
 					"$(PROJECT_DIR)/relazin/lib",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.roooot.relazin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.svindev.rswordsvin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -575,6 +577,8 @@
 					"$(SRCROOT)/relazin/kexploit",
 				);
 				INFOPLIST_FILE = relazin/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RSwordSvin;
+				INFOPLIST_KEY_CFBundleName = RSwordSvin;
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -592,7 +596,7 @@
 					"$(PROJECT_DIR)/relazin/lib",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.roooot.relazin;
+				PRODUCT_BUNDLE_IDENTIFIER = com.svindev.rswordsvin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

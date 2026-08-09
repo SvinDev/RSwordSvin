@@ -39,9 +39,9 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
         with:
-          name: relazin-ipa
+          name: rswordsvin-ipa
           path: |
-            build/relazin.ipa
+            build/RSwordSvin.ipa
             build/xcodebuild.log
 
       - name: upload release ipa
@@ -49,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-ipa
-          path: build/relazin.ipa
+          path: build/RSwordSvin.ipa
 
 
   release:
@@ -83,7 +83,7 @@ jobs:
       - name: write release notes
         run: |
           cat <<EOF > release_notes.txt
-          relazin nightly build
+          RSwordSvin nightly build
           
           Last 12 hours commits:
           
@@ -105,4 +105,4 @@ jobs:
             --notes-file release_notes.txt \
             --prerelease
       
-          gh release upload nightly build/relazin.ipa --clobber
+          gh release upload nightly build/RSwordSvin.ipa --clobber

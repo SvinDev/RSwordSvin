@@ -10,22 +10,23 @@ import SwiftUI
 
 enum terminal {
     static let bg = Color.black
+    static let accent = Color(red: 1.0, green: 0.12, blue: 0.18)
     static let green = Color(red: 0.35, green: 0.95, blue: 0.45)
     static let dim = Color(white: 0.55)
-    static let red = Color(red: 1.0, green: 0.25, blue: 0.2)
+    static let red = accent
     static let mono: Font = .system(.body, design: .monospaced)
 }
 
-// MARK: - Watermark background ("relazin" tiled, like the design photo)
+// MARK: - RSwordSvin watermark background
 
 struct terminalwatermark: View {
     var body: some View {
         Canvas { ctx, size in
-            let mark = Text("relazin")
+            let mark = Text("rswordsvin")
                 .font(.system(size: 17, weight: .medium, design: .monospaced))
-                .foregroundColor(terminal.green.opacity(0.13))
+                .foregroundColor(terminal.accent.opacity(0.14))
             let resolved = ctx.resolve(mark)
-            let stepX: CGFloat = 150
+            let stepX: CGFloat = 190
             let stepY: CGFloat = 46
             var row = 0
             var y: CGFloat = -20
@@ -46,14 +47,16 @@ struct terminalwatermark: View {
     }
 }
 
-// MARK: - Pixel logo: RELAZIN + red dot
+// MARK: - RSwordSvin wordmark
 
 struct terminallogo: View {
     var body: some View {
-        HStack(alignment: .lastTextBaseline, spacing: 8) {
-            Text("RELAZIN")
-                .font(.system(size: 56, weight: .heavy, design: .monospaced))
-                .foregroundColor(.white)
+        HStack(alignment: .lastTextBaseline, spacing: 7) {
+            (Text("R")
+                .foregroundColor(terminal.accent)
+             + Text("SWORDSVIN")
+                .foregroundColor(.white))
+                .font(.system(size: 45, weight: .heavy, design: .monospaced))
                 .minimumScaleFactor(0.5)
                 .lineLimit(1)
             Rectangle()
@@ -61,7 +64,7 @@ struct terminallogo: View {
                 .frame(width: 13, height: 13)
                 .offset(y: -4)
         }
-        .accessibilityLabel("relazin")
+        .accessibilityLabel("RSwordSvin")
     }
 }
 
@@ -74,7 +77,7 @@ struct terminalinforow: View {
     var body: some View {
         HStack(spacing: 0) {
             Text(key)
-                .foregroundColor(terminal.green)
+                .foregroundColor(terminal.accent)
                 .frame(width: 90, alignment: .leading)
             Text(value)
                 .foregroundColor(.white)
@@ -100,9 +103,9 @@ struct terminalmenuitem: View {
         }) {
             HStack(spacing: 10) {
                 Text(highlighted || pressed ? "▸" : " ")
-                    .foregroundColor(terminal.green)
+                    .foregroundColor(terminal.accent)
                 Text(title)
-                    .foregroundColor(highlighted || pressed ? terminal.green : .white)
+                    .foregroundColor(highlighted || pressed ? terminal.accent : .white)
                 Spacer()
             }
             .font(.system(size: 22, weight: .medium, design: .monospaced))

@@ -30,7 +30,7 @@ Steps to reproduce the behavior:
 - **Chip:** ``[Insert here]`` <!-- e.g. A15, A14, M1 -->
 - **iOS Version:** ``[Insert here]`` <!-- e.g. 16.5 (20F66) — include the build number -->
 - **Jailbroken before?** ``[Insert here]`` <!-- Yes / No / First attempt on this device -->
-- **Lara version / commit:** ``[Insert here]`` <!-- e.g. v0.3 or commit hash -->
+- **RSwordSvin version / commit:** ``[Insert here]`` <!-- e.g. v0.0.1-beta or commit hash -->
 
 ### Logs:
 <!-- Paste crash logs, console output, or kernel panic text. Use ``` fences. -->
@@ -45,7 +45,7 @@ Steps to reproduce the behavior:
 ### Pre-submission checklist:
 <!-- Please confirm all of the following before submitting. Issues missing these may be closed. -->
 - [ ] I have searched existing issues (open and closed) and confirmed this is not a duplicate
-- [ ] I can reproduce this on the latest version / commit of Lara
+- [ ] I can reproduce this on the latest version / commit of RSwordSvin
 - [ ] I have provided sufficient detail (device info, logs, reproduction steps) for a maintainer to investigate
 - [ ] I agree to communicate respectfully with the developers and understand that harassment may result in restricted support
 <!-- To Mark a check Put an "x" inside the brackets like so [x] -->

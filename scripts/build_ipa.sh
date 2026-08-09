@@ -46,9 +46,9 @@ if ! command -v ldid >/dev/null 2>&1; then
   exit 1
 fi
 ldid -SConfig/relazin.entitlements "$PWD/build/Payload/relazin.app/relazin"
-(cd "$PWD/build" && /usr/bin/zip -qry relazin.ipa Payload)
+(cd "$PWD/build" && /usr/bin/zip -qry RSwordSvin.ipa Payload)
 
 echo
 echo "build successful!"
-echo "ipa at: build/relazin.ipa"
+echo "ipa at: build/RSwordSvin.ipa"
 exit 0

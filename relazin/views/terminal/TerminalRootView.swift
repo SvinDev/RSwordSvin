@@ -80,7 +80,7 @@ struct TerminalRootView: View {
             }
             .navigationBarHidden(true)
         }
-        .tint(terminal.green)
+        .tint(terminal.accent)
     }
 }
 
@@ -91,7 +91,7 @@ private struct terminalmenulabel: View {
     var body: some View {
         HStack(spacing: 10) {
             Text(" ")
-                .foregroundColor(terminal.green)
+                .foregroundColor(terminal.accent)
             Text(title)
                 .foregroundColor(.white)
             Spacer()

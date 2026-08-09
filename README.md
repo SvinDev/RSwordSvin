@@ -1,19 +1,19 @@
 <p align="center">
-  <img src="assets/banner.jpg" alt="Relazin" width="100%">
+  <img src="assets/banner.jpg" alt="RSwordSvin" width="100%">
 </p>
 
 <p align="center">
-  <a href="https://github.com/SvinDev/Relazin/actions/workflows/build.yml"><img src="https://github.com/SvinDev/Relazin/actions/workflows/build.yml/badge.svg?branch=main" alt="Build"></a>
-  <a href="https://github.com/SvinDev/Relazin/releases"><img src="https://img.shields.io/github/v/release/SvinDev/Relazin?include_prereleases&label=release" alt="Release"></a>
+  <a href="https://github.com/SvinDev/RSwordSvin/actions/workflows/build.yml"><img src="https://github.com/SvinDev/RSwordSvin/actions/workflows/build.yml/badge.svg?branch=main" alt="Build"></a>
+  <a href="https://github.com/SvinDev/RSwordSvin/releases"><img src="https://img.shields.io/github/v/release/SvinDev/RSwordSvin?include_prereleases&label=release" alt="Release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-AGPL--3.0-red" alt="AGPL-3.0"></a>
 </p>
 
-# Relazin
+# RSwordSvin
 
-Relazin is an experimental iOS customization toolbox that combines the Lara core with the Cyanide tweak engine behind a terminal-inspired SwiftUI interface.
+RSwordSvin is an experimental iOS customization toolbox that combines the Lara core with the Cyanide tweak engine behind a black-and-red terminal-inspired SwiftUI interface.
 
 > [!WARNING]
-> Relazin performs low-level system modifications. Compatibility depends on the device, iOS build, and available offsets. Back up important data and use it at your own risk.
+> RSwordSvin performs low-level system modifications. Compatibility depends on the device, iOS build, and available offsets. Back up important data and use it at your own risk.
 
 ## Features
 
@@ -30,9 +30,9 @@ The current interface targets iOS 17.0–18.7 and iOS 26.0–26.0.1. The Xcode t
 
 ## Installation
 
-1. Download the latest IPA from [Releases](https://github.com/SvinDev/Relazin/releases).
+1. Download the latest IPA from [Releases](https://github.com/SvinDev/RSwordSvin/releases).
 2. Sign and install it using your preferred iOS sideloading method.
-3. Open Relazin and run the exploit before using features that require kernel access.
+3. Open RSwordSvin and run the exploit before using features that require kernel access.
 
 ## Build
 
@@ -44,12 +44,12 @@ Requirements:
 
 ```bash
 brew install ldid
-git clone https://github.com/SvinDev/Relazin.git
-cd Relazin
+git clone https://github.com/SvinDev/RSwordSvin.git
+cd RSwordSvin
 ./scripts/build_ipa.sh
 ```
 
-The resulting package is written to `build/relazin.ipa`.
+The resulting package is written to `build/RSwordSvin.ipa`.
 
 ## Preview
 
@@ -57,11 +57,11 @@ nothing..
 
 ## Credits
 
-- [SvinDev](https://github.com/SvinDev) — maintainer and Relazin integration
-- 0xjohnnydev for Cyanide part
-— rooootdev for Lara part
-- GPT 5.6 Sol
+- [SvinDev](https://github.com/SvinDev) — RSwordSvin maintainer and integration
+- 0xjohnnydev — Cyanide engine
+- rooootdev — Lara core
+- OpenAI GPT-5.6 Sol — development assistance
 
 ## License
 
-Relazin is distributed under the [GNU Affero General Public License v3.0](LICENSE). Bundled third-party components retain their respective licenses under [`relazin/licenses`](relazin/licenses).
+RSwordSvin is distributed under the [GNU Affero General Public License v3.0](LICENSE). Bundled third-party components retain their respective licenses under [`relazin/licenses`](relazin/licenses).

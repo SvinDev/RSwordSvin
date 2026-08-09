@@ -64,7 +64,7 @@ struct relazin: App {
                     iconthememgr.startPendingFixupIfPossible()
                     mgr.hasOffsets = emergencyfixfunctiontobereplacedlateronquestionmark()
                 } else {
-                    Alertinator.shared.alert(title: "This device is not supported!", body: "We apologize, but this device is currently not supported by relazin. Possible reasons: \n- You are on an unsupported iOS version (Supported: iOS 17.0 - iOS 18.7, iOS 26.0 - iOS 26.0.1) \n- Your device has MIE (A19+ or M5+) \n- A debugger is attached.", actionLabel: "Exit App", action: { exitinator() })
+                    Alertinator.shared.alert(title: "This device is not supported!", body: "We apologize, but this device is currently not supported by RSwordSvin. Possible reasons: \n- You are on an unsupported iOS version (Supported: iOS 17.0 - iOS 18.7, iOS 26.0 - iOS 26.0.1) \n- Your device has MIE (A19+ or M5+) \n- A debugger is attached.", actionLabel: "Exit App", action: { exitinator() })
                 }
             }
             .onChange(of: scenephase, perform: handleScenePhase)

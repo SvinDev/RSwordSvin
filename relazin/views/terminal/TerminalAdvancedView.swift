@@ -60,7 +60,7 @@ struct TerminalAdvancedView: View {
             ToolbarItem(placement: .principal) {
                 Text("▸ advanced options")
                     .font(.system(size: 17, weight: .medium, design: .monospaced))
-                    .foregroundColor(terminal.green)
+                    .foregroundColor(terminal.accent)
             }
         }
         .toolbarBackground(terminal.bg, for: .navigationBar)
@@ -99,7 +99,7 @@ private struct terminalnavlink<Destination: View>: View {
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: 10) {
                     Text("▸")
-                        .foregroundColor(terminal.green)
+                        .foregroundColor(terminal.accent)
                     Text(title)
                         .foregroundColor(.white)
                     Spacer()

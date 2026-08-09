@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build and analyze relazin
+    name: Build and analyze RSwordSvin
     runs-on: macos-26
 
     steps:

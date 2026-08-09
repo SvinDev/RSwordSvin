@@ -39,7 +39,7 @@ assignees: ''
 ### Pre-submission checklist:
 <!-- Please confirm all of the following before submitting. Requests missing these may be closed. -->
 - [ ] I have searched existing issues (open and closed) and confirmed this feature has not already been requested
-- [ ] This request is relevant to the latest version / commit of Lara
+- [ ] This request is relevant to the latest version / commit of RSwordSvin
 - [ ] I have provided sufficient detail (problem, proposed solution, scope) for a maintainer to evaluate
 - [ ] I agree to communicate respectfully with the developers and understand that harassment may result in restricted support
 <!-- To Mark a check Put an "x" inside the brackets like so [x] -->

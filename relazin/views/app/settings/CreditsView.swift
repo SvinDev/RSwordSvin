@@ -11,6 +11,12 @@ struct CreditsView: View {
     var body: some View {
         NavigationStack {
             List {
+                LinkCreditCell(name: "SvinDev", description: "RSwordSvin maintainer and integration", url: "https://github.com/SvinDev") {
+                    LinkCreditIcon(url: "https://github.com/SvinDev.png")
+                }
+                LinkCreditCell(name: "0xjohnnydev", description: "Cyanide engine", url: "https://github.com/0xjohnnydev") {
+                    LinkCreditIcon(url: "https://github.com/0xjohnnydev.png")
+                }
                 LinkCreditCell(name: "roooot", description: "Main Developer", url: "https://github.com/rooootdev") {
                     LinkCreditIcon(url: "https://github.com/rooootdev.png")
                 }

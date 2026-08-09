@@ -1,30 +1,30 @@
 {
-  "name": "lara nightly",
-  "subtitle": "A customization toolbox that utilizes DarkSword.",
-  "description": "",
-  "iconURL": "https://raw.githubusercontent.com/rooootdev/lara/refs/heads/main/lara.png",
-  "headerURL": "https://raw.githubusercontent.com/rooootdev/lara/refs/heads/main/icon.png",
-  "website": "https://github.com/rooootdev/lara",
-  "tintColor": "#4185A9",
+  "name": "RSwordSvin Nightly",
+  "subtitle": "Latest experimental RSwordSvin build.",
+  "description": "Nightly builds may be unstable.",
+  "iconURL": "https://raw.githubusercontent.com/SvinDev/RSwordSvin/refs/heads/main/assets/app-icon.png",
+  "headerURL": "https://raw.githubusercontent.com/SvinDev/RSwordSvin/refs/heads/main/assets/banner.jpg",
+  "website": "https://github.com/SvinDev/RSwordSvin",
+  "tintColor": "#FF1F2D",
   "featuredApps": [
-    "com.roooot.lara"
+    "com.svindev.rswordsvin"
   ],
   "apps": [
     {
-      "name": "lara (Nightly)",
-      "bundleIdentifier": "com.roooot.lara",
-      "developerName": "rooootdev & lara team",
-      "subtitle": "This is the nightly testing build for lara.",
-      "localizedDescription": "This is the nightly testing build for lara. Only use this if you're interested in new features and do not care about stability. lara is a customization toolbox that utilizes DarkSword. Supports iOS 16.0 - iOS 18.7.1 & iOS 26.0.x, excluding M5 and A19.\n\nFor more information, check out our GitHub! https://github.com/rooootdev/lara. Join the Discord if you'd like to report any bugs! https://discord.gg/gw8PcRF3Jr.",
-      "iconURL": "https://raw.githubusercontent.com/rooootdev/lara/refs/heads/main/lara.png",
-      "tintColor": "#5CA399",
+      "name": "RSwordSvin (Nightly)",
+      "bundleIdentifier": "com.svindev.rswordsvin",
+      "developerName": "SvinDev and contributors",
+      "subtitle": "The latest nightly testing build.",
+      "localizedDescription": "This is the latest experimental RSwordSvin build. Use it to test new changes and expect instability. Supports iOS 17.0–18.7 and iOS 26.0–26.0.1, excluding A19 and M5 devices.",
+      "iconURL": "https://raw.githubusercontent.com/SvinDev/RSwordSvin/refs/heads/main/assets/app-icon.png",
+      "tintColor": "#FF1F2D",
       "versions": [
         {
-          "version": "0.2",
-          "date": "2026-05-5",
-          "size": 3450675,
-          "downloadURL": "https://github.com/rooootdev/lara/releases/download/nightly/lara.ipa",
-          "localizedDescription": "",
+          "version": "0.0.1-nightly",
+          "date": "2026-08-09",
+          "size": 8513020,
+          "downloadURL": "https://github.com/SvinDev/RSwordSvin/releases/download/nightly/RSwordSvin.ipa",
+          "localizedDescription": "Automatically built from the latest main branch.",
           "minOSVersion": "16.0"
         }
       ],
