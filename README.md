@@ -59,7 +59,8 @@ nothing..
 
 - [SvinDev](https://github.com/SvinDev) — RSwordSvin maintainer and integration
 - 0xjohnnydev — Cyanide 
-- rooootdev — Lara 
+- rooootdev — Lara
+- wintence - Design
 
 ## License
 
