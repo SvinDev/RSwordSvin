@@ -72,7 +72,7 @@ struct ShowHiddenIconsView: View {
                             body: "Deletes the SBIconVisibility key from GlobalPreferences instead of writing false. This restores the default preference value. If SpringBoard has already cached the old state, you may still need to rebuild the Application State DB and reboot."
                         )
                     } label: {
-                        Image(systemName: "info.circle")
+                        Image(systemName: "info.square")
                             .frame(width: 24, height: 22)
                     }
                     .buttonStyle(.plain)
@@ -94,7 +94,7 @@ struct ShowHiddenIconsView: View {
                             body: "Clears SpringBoard's applicationState.db, applicationState.db-wal, and applicationState.db-shm so SpringBoard rebuilds them. Reboot after applying. Respring may leave SpringBoard on a black screen, and some widget configuration may be lost."
                         )
                     } label: {
-                        Image(systemName: "info.circle")
+                        Image(systemName: "info.square")
                             .frame(width: 24, height: 22)
                     }
                     .buttonStyle(.plain)

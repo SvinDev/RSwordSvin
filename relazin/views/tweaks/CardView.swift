@@ -63,9 +63,9 @@ struct CardView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 140, height: 90)
-                            .cornerRadius(8)
+                            .clipShape(Rectangle())
                     } else {
-                        RoundedRectangle(cornerRadius: 8)
+                        Rectangle()
                             .fill(Color.gray.opacity(0.2))
                             .frame(width: 140, height: 90)
                             .overlay(
@@ -176,7 +176,7 @@ struct CardView: View {
                             ProgressView()
                         }
                         .frame(width: 40, height: 40)
-                        .clipShape(Circle())
+                        .clipShape(Rectangle())
 
                         VStack(alignment: .leading) {
                             Text("drkm9743")

@@ -361,11 +361,11 @@ struct AppRow: View {
             if let icon = app.icon {
                 Image(uiImage: icon)
                     .resizable().frame(width: 40, height: 40)
-                    .clipShape(RoundedRectangle(cornerRadius: 9))
+                    .clipShape(Rectangle())
             } else {
                 Image("unknown")
                     .resizable().frame(width: 40, height: 40)
-                    .clipShape(RoundedRectangle(cornerRadius: 9))
+                    .clipShape(Rectangle())
             }
 
             VStack(alignment: .leading, spacing: 2) {
@@ -399,11 +399,9 @@ struct AppRow: View {
                 }
                 .disabled(true)
             case .unencrypted:
-                Image(systemName: "checkmark.circle").foregroundColor(.green)
+                Image(systemName: "checkmark.square").foregroundColor(.green)
             }
         }
         .opacity(isdecrypting ? 0.6 : 1.0)
     }
 }
-
-

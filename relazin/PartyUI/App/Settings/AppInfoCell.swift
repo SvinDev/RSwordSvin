@@ -38,17 +38,17 @@ public struct AppIcon: View {
                 .scaledToFit()
                 .frame(width: 64, height: 64)
                 .background(Color(.systemGray6))
-                .clipShape(.rect(cornerRadius: 18))
-                .glassEffect(.regular, in: .rect(cornerRadius: 18))
+                .clipShape(Rectangle())
+                .glassEffect(.regular, in: Rectangle())
         } else {
             image
                 .resizable()
                 .scaledToFit()
                 .frame(width: 64, height: 64)
                 .background(Color(.systemGray6))
-                .clipShape(.rect(cornerRadius: 14))
+                .clipShape(Rectangle())
                 .overlay {
-                    RoundedRectangle(cornerRadius: 14)
+                    Rectangle()
                         .stroke(Color.primary.opacity(0.2), lineWidth: 2)
                 }
         }

@@ -63,7 +63,7 @@ struct DarkBoardView: View {
                         .padding()
                         .background(manager.selectedThemeNames.isEmpty ? Color.secondary.opacity(0.25) : Color.accentColor)
                         .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                        .clipShape(Rectangle())
                         .padding()
                 }
                 .disabled(manager.selectedThemeNames.isEmpty || manager.isApplying)
@@ -121,7 +121,7 @@ struct DarkBoardView: View {
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(.thinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .clipShape(Rectangle())
             }
 
             HStack(spacing: 12) {
@@ -136,15 +136,15 @@ struct DarkBoardView: View {
                 NavigationLink("Explore") {
                     DarkBoardExploreView()
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(TranslucentButtonStyle(useFullWidth: false))
                 NavigationLink("Overrides") {
                     IconOverridesView()
                 }
-                .buttonStyle(.bordered)
+                .buttonStyle(TranslucentButtonStyle(useFullWidth: false))
             }
             .padding()
             .background(.thinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(Rectangle())
 
             if manager.themes.isEmpty {
                 Text("Import a folder, `.theme`, or `.zip` containing `IconBundles/<bundle-id>.png` icons.")
@@ -153,7 +153,7 @@ struct DarkBoardView: View {
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .background(.thinMaterial)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .clipShape(Rectangle())
             }
         }
     }
@@ -234,7 +234,7 @@ struct DarkBoardView: View {
             .padding(20)
             .frame(maxWidth: 320)
             .background(.regularMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 18))
+            .clipShape(Rectangle())
         }
     }
 }
@@ -249,7 +249,7 @@ private struct ThemeCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             ZStack {
-                RoundedRectangle(cornerRadius: 12)
+                Rectangle()
                     .fill(Color.secondary.opacity(0.15))
                     .frame(height: 94)
 
@@ -289,7 +289,7 @@ private struct ThemeCardView: View {
                     .padding(.vertical, 10)
                     .background(selectionIndex == nil ? Color.secondary.opacity(0.2) : Color.accentColor)
                     .foregroundStyle(selectionIndex == nil ? Color.primary : Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .clipShape(Rectangle())
             }
 
             Button(role: .destructive, action: onDelete) {
@@ -299,7 +299,7 @@ private struct ThemeCardView: View {
         }
         .padding()
         .background(.thinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .clipShape(Rectangle())
     }
 
     @ViewBuilder
@@ -308,9 +308,9 @@ private struct ThemeCardView: View {
             Image(uiImage: image)
                 .resizable()
                 .frame(width: 28, height: 28)
-                .clipShape(RoundedRectangle(cornerRadius: 7))
+                .clipShape(Rectangle())
         } else {
-            RoundedRectangle(cornerRadius: 7)
+            Rectangle()
                 .fill(Color.clear)
                 .frame(width: 28, height: 28)
         }
@@ -333,12 +333,12 @@ struct IconOverridesView: View {
                             Image(uiImage: icon)
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                                .clipShape(RoundedRectangle(cornerRadius: 9))
+                                .clipShape(Rectangle())
                         } else {
                             Image("unknown")
                                 .resizable()
                                 .frame(width: 40, height: 40)
-                                .clipShape(RoundedRectangle(cornerRadius: 9))
+                                .clipShape(Rectangle())
                         }
                         VStack(alignment: .leading) {
                             Text(app.name)
@@ -398,7 +398,7 @@ private struct OverrideSelectionView: View {
                         Image(uiImage: choice.image)
                             .resizable()
                             .frame(width: 60, height: 60)
-                            .clipShape(RoundedRectangle(cornerRadius: 14))
+                            .clipShape(Rectangle())
                         VStack(alignment: .leading) {
                             Text(choice.theme.name)
                             Text(choice.theme.name == manager.iconOverrides[app.bundleIdentifier] ? "Current override" : "Tap to set")

@@ -229,10 +229,10 @@ struct RemoteView: View {
                             if let state = mgr.eligibilitystate {
                                 Spacer()
                                 if state {
-                                    Image(systemName: "checkmark.circle")
+                                    Image(systemName: "checkmark.square")
                                         .foregroundColor(.green)
                                 } else {
-                                    Image(systemName: "xmark.circle")
+                                    Image(systemName: "xmark.square")
                                         .foregroundColor(.red)
                                 }
                             }
@@ -293,10 +293,10 @@ struct RemoteView: View {
                                 Text("Enable Spoof EU Region")
                                 Spacer()
                                 if mgr.eu1progress + mgr.eu2progress == 2 {
-                                    Image(systemName: "checkmark.circle")
+                                    Image(systemName: "checkmark.square")
                                         .foregroundColor(.green)
                                 } else if mgr.dsattempted && mgr.dsfailed {
-                                    Image(systemName: "xmark.circle")
+                                    Image(systemName: "xmark.square")
                                         .foregroundColor(.red)
                                 }
                             }
@@ -433,7 +433,7 @@ struct RemoteView: View {
                         ProgressView()
                     }
                     .frame(width: 40, height: 40)
-                    .clipShape(Circle())
+                    .clipShape(Rectangle())
                     
                     VStack(alignment: .leading) {
                         Text("Duy Tran")
@@ -462,7 +462,7 @@ struct RemoteView: View {
                         ProgressView()
                     }
                     .frame(width: 40, height: 40)
-                    .clipShape(Circle())
+                    .clipShape(Rectangle())
                     
                     VStack(alignment: .leading) {
                         Text("0xjf")
@@ -491,7 +491,7 @@ struct RemoteView: View {
                         ProgressView()
                     }
                     .frame(width: 40, height: 40)
-                    .clipShape(Circle())
+                    .clipShape(Rectangle())
                     
                     VStack(alignment: .leading) {
                         Text("Scream")

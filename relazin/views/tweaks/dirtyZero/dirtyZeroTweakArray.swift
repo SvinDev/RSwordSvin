@@ -55,12 +55,12 @@ enum TweakArray {
         ZeroSection(name: "Fonts & Icons", icon: "paintbrush", tweaks: [
             ZeroTweak(name: "Enable Helvetica Font", icon: "character.cursor.ibeam", minSupportedVersion: 17.0, maxSupportedVersion: 26.9, paths: ["/System/Library/Fonts/Core/SFUI.ttf"]),
             ZeroTweak(name: "Enable Helvetica Font ", icon: "character.cursor.ibeam", minSupportedVersion: 16.0, maxSupportedVersion: 16.9, paths: ["/System/Library/Fonts/CoreUI/SFUI.ttf"]),
-            ZeroTweak(name: "Disable Emojis", icon: "circle.slash", minSupportedVersion: 16.0, maxSupportedVersion: 18.9, paths: ["/System/Library/Fonts/CoreAddition/AppleColorEmoji-160px.ttc"]),
+            ZeroTweak(name: "Disable Emojis", icon: "xmark.square", minSupportedVersion: 16.0, maxSupportedVersion: 18.9, paths: ["/System/Library/Fonts/CoreAddition/AppleColorEmoji-160px.ttc"]),
             ZeroTweak(name: "Hide Ringer Icon", icon: "bell.slash", minSupportedVersion: 16.0, maxSupportedVersion: 26.9, paths: ["/System/Library/PrivateFrameworks/SpringBoard.framework/Ringer-Leading-D73.ca/main.caml"]),
             ZeroTweak(name: "Hide Tethering Icon", icon: "link", minSupportedVersion: 16.0, maxSupportedVersion: 26.9, paths: ["/System/Library/PrivateFrameworks/SpringBoard.framework/Tethering-D73.ca/main.caml"])
         ]),
         ZeroSection(name: "Control Center", icon: "square.grid.2x2", tweaks: [
-            ZeroTweak(name: "Clear CC Modules", icon: "circle.grid.2x2", minSupportedVersion: 18.0, maxSupportedVersion: 18.9, paths: ["/System/Library/PrivateFrameworks/CoreMaterial.framework/modulesSheer.descendantrecipe", "/System/Library/ControlCenter/Bundles/FocusUIModule.bundle/Info.plist"]),
+            ZeroTweak(name: "Clear CC Modules", icon: "square.grid.2x2", minSupportedVersion: 18.0, maxSupportedVersion: 18.9, paths: ["/System/Library/PrivateFrameworks/CoreMaterial.framework/modulesSheer.descendantrecipe", "/System/Library/ControlCenter/Bundles/FocusUIModule.bundle/Info.plist"]),
             ZeroTweak(name: "Disable Slider Icons ", icon: "sun.max", minSupportedVersion: 16.0, maxSupportedVersion: 17.9, paths: ["/System/Library/ControlCenter/Bundles/DisplayModule.bundle/Brightness.ca/index.xml", "/System/Library/PrivateFrameworks/MediaControls.framework/Volume.ca/index.xml"]),
             ZeroTweak(name: "Disable Slider Icons", icon: "sun.max", minSupportedVersion: 18.0, maxSupportedVersion: 26.9, paths: ["/System/Library/ControlCenter/Bundles/DisplayModule.bundle/Brightness.ca/index.xml", "/System/Library/PrivateFrameworks/MediaControls.framework/VolumeSemibold.ca/index.xml"]),
             ZeroTweak(name: "Hide Player Buttons", icon: "play", minSupportedVersion: 17.0, maxSupportedVersion: 26.9, paths: ["/System/Library/PrivateFrameworks/MediaControls.framework/PlayPauseStop.ca/index.xml", "/System/Library/PrivateFrameworks/MediaControls.framework/ForwardBackward.ca/index.xml"]),
@@ -87,4 +87,3 @@ enum TweakArray {
         ])
     ]
 }
-

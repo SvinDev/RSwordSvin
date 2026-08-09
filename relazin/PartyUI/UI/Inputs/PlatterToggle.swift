@@ -49,10 +49,10 @@ public struct PlatterToggle: View {
                             Button(action: {
                                 Alertinator.shared.alert(title: infoTitle, body: infoMessage)
                             }) {
-                                Image(systemName: infoType == .info ? "info.circle" : "exclamationmark.triangle")
+                                Image(systemName: infoType == .info ? "info.square" : "exclamationmark.triangle")
                             }
                         }
-                        Image(systemName: isOn ? "checkmark.circle.fill" : "circle")
+                        Image(systemName: isOn ? "checkmark.square.fill" : "square")
                             .animation(.iconUpdate, value: isOn)
                     }
                 }
@@ -61,4 +61,3 @@ public struct PlatterToggle: View {
         }
     }
 }
-

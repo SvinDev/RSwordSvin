@@ -212,7 +212,7 @@ struct SystemColor: View {
                             ProgressView()
                         }
                         .frame(width: 40, height: 40)
-                        .clipShape(Circle())
+                        .clipShape(Rectangle())
                         
                         VStack(alignment: .leading) {
                             Text("Yupa")
@@ -240,7 +240,7 @@ struct SystemColor: View {
                 Button {
                     apply()
                 } label: {
-                    Image(systemName: "checkmark.circle.fill")
+                    Image(systemName: "checkmark.square.fill")
                 }
             }
             .onAppear(perform: load)

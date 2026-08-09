@@ -64,8 +64,8 @@ public struct LinkCreditIcon: View {
                     .scaledToFill()
                     .frame(width: 40, height: 40)
                     .background(Color(.systemGray6))
-                    .clipShape(Circle())
-                    .glassEffect(.regular, in: Circle())
+                    .clipShape(Rectangle())
+                    .glassEffect(.regular, in: Rectangle())
             } placeholder: {
                 ProgressView()
                     .frame(width: 40, height: 40)
@@ -77,9 +77,9 @@ public struct LinkCreditIcon: View {
                     .scaledToFill()
                     .frame(width: 40, height: 40)
                     .background(Color(.systemGray6))
-                    .clipShape(Circle())
+                    .clipShape(Rectangle())
                     .overlay {
-                        Circle()
+                        Rectangle()
                             .stroke(Color.primary.opacity(0.2), lineWidth: 1)
                     }
             } placeholder: {

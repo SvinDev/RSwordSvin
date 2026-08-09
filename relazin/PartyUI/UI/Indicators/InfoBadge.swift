@@ -26,6 +26,6 @@ public struct InfoBadge: View {
         }
         .foregroundStyle(color)
         .padding(10)
-        .background(color.opacity(0.2), in: .capsule)
+        .background(color.opacity(0.2), in: Rectangle())
     }
 }

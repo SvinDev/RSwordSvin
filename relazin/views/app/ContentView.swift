@@ -65,14 +65,14 @@ struct ContentView: View {
         Section {
             LabeledContent(content: {
                 if mgr.dsready {
-                    Image(systemName: "checkmark.circle")
+                    Image(systemName: "checkmark.square")
                 } else if mgr.dsrunning {
                     HStack {
                         Text("\(Int(mgr.dsprogress * 100))%")
                         ProgressView()
                     }
                 } else if mgr.dsattempted && mgr.dsfailed {
-                    Image(systemName: "xmark.circle")
+                    Image(systemName: "xmark.square")
                 }
             }) {
                 Button("Run Exploit", action: {
@@ -120,14 +120,14 @@ struct ContentView: View {
                 if selectedmethod == .hybrid {
                     LabeledContent(content: {
                         if mgr.vfsready && mgr.sbxready {
-                            Image(systemName: "checkmark.circle")
+                            Image(systemName: "checkmark.square")
                         } else if mgr.vfsrunning || mgr.sbxrunning {
                             HStack {
                                 Text("Running...")
                                 ProgressView()
                             }
                         } else if (mgr.vfsattempted && mgr.vfsfailed) || (mgr.sbxattempted && mgr.sbxfailed) {
-                            Image(systemName: "xmark.circle")
+                            Image(systemName: "xmark.square")
                         }
                     }) {
                         Button("Initialize System", action: {
@@ -142,14 +142,14 @@ struct ContentView: View {
                 if selectedmethod == .vfs {
                     LabeledContent(content: {
                         if mgr.vfsready {
-                            Image(systemName: "checkmark.circle")
+                            Image(systemName: "checkmark.square")
                         } else if mgr.vfsrunning {
                             HStack {
                                 Text("\(Int(mgr.dsprogress * 100))%")
                                 ProgressView()
                             }
                         } else if mgr.vfsattempted && mgr.vfsfailed {
-                            Image(systemName: "xmark.circle")
+                            Image(systemName: "xmark.square")
                         }
                     }) {
                         Button("Initialize VFS", action: {
@@ -163,14 +163,14 @@ struct ContentView: View {
                 if selectedmethod == .sbx {
                     LabeledContent(content: {
                         if mgr.sbxready {
-                            Image(systemName: "checkmark.circle")
+                            Image(systemName: "checkmark.square")
                         } else if mgr.sbxrunning {
                             HStack {
                                 Text("Running...")
                                 ProgressView()
                             }
                         } else if mgr.sbxattempted && mgr.sbxfailed {
-                            Image(systemName: "xmark.circle")
+                            Image(systemName: "xmark.square")
                         }
                     }) {
                         Button("Escape Sandbox", action: {
@@ -196,14 +196,14 @@ struct ContentView: View {
                 // init remotecall
                 LabeledContent(content: {
                     if mgr.rcready {
-                        Image(systemName: "checkmark.circle")
+                        Image(systemName: "checkmark.square")
                     } else if mgr.rcrunning {
                         HStack {
                             Text("Running...")
                             ProgressView()
                         }
                     } else if mgr.rcfailed {
-                        Image(systemName: "xmark.circle")
+                        Image(systemName: "xmark.square")
                     }
                 }) {
                     Button("Initalize RemoteCall", action: {

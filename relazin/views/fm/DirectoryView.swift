@@ -163,7 +163,7 @@ struct santanderdirview: View {
                             Button {
                                 infoitem = entry
                             } label: {
-                                Label("Get Info", systemImage: "info.circle")
+                                Label("Get Info", systemImage: "info.square")
                             }
 
                             Button {
@@ -195,7 +195,7 @@ struct santanderdirview: View {
                             Button {
                                 chownitem = entry
                             } label: {
-                                Label("Chown", systemImage: "person.crop.circle")
+                                Label("Chown", systemImage: "person.crop.square")
                             }
 
                             Button(role: .destructive) {
@@ -236,7 +236,7 @@ struct santanderdirview: View {
                     Button {
                         showvfsinfo = true
                     } label: {
-                        Image(systemName: "info.circle")
+                        Image(systemName: "info.square")
                     }
                 }
 
@@ -317,7 +317,7 @@ struct santanderdirview: View {
                         Label("Go to Home", systemImage: "house")
                     }
                 } label: {
-                    Image(systemName: "ellipsis.circle")
+                    Image(systemName: "ellipsis.rectangle")
                 }
             }
         }

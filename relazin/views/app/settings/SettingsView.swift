@@ -53,7 +53,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section(header: HeaderLabel(text: "About", icon: "info.circle")) {
+                Section(header: HeaderLabel(text: "About", icon: "info.square")) {
                     AppInfoCell()
                     NavigationLink("Credits", destination: CreditsView())
                 }
@@ -111,7 +111,7 @@ struct SettingsView: View {
                             Button(action: {
                                 showkcachetips.toggle()
                             }) {
-                                Image(systemName: "info.circle")
+                                Image(systemName: "info.square")
                             }
                         }) {
                             Button("Import Kernelcache", action: {

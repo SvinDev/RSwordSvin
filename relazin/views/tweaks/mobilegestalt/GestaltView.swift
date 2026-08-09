@@ -156,7 +156,7 @@ struct GestaltView: View {
                         Button(action: {
                             Alertinator.shared.alert(title: "Device Spoofing Info", body: "Only spoof your device model if you want to download Apple Intelligence. This may break Face ID. If you decide to unspoof and want to keep Apple Intelligence, do NOT re-enter the Apple Intelligence & Siri menu in Settings.")
                         }) {
-                            Image(systemName: "info.circle")
+                            Image(systemName: "info.square")
                                 .frame(width: 24, height: 22)
                         }
                         .buttonStyle(.plain)

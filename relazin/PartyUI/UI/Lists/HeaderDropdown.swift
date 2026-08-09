@@ -49,7 +49,7 @@ public struct HeaderDropdown: View {
                         .frame(minWidth: 14)
                         .frame(height: 14)
                         .padding(6)
-                        .background(Color(.secondarySystemBackground), in: .capsule)
+                        .background(Color(.secondarySystemBackground), in: Rectangle())
                 }
                 Image(systemName: "chevron.down")
                     .frame(width: 24, height: 24, alignment: .center)

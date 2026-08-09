@@ -91,12 +91,12 @@ struct PasscodeExploreView: View {
                 .font(.footnote)
                 .foregroundStyle(.secondary)
             Button("Retry") { Task { await gallery.loadThemes(forceRefresh: true) } }
-            .buttonStyle(.borderedProminent)
+            .buttonStyle(PrimaryButtonStyle(useFullWidth: false))
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(.thinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .clipShape(Rectangle())
     }
 }
 
@@ -147,19 +147,19 @@ private struct PasscodeGalleryCard: View {
 
                 Button(action: onDownload) {
                     HStack {
-                        if isDownloading { ProgressView().controlSize(.small).tint(.white) } else { Image(systemName: "arrow.down.circle") }
+                        if isDownloading { ProgressView().controlSize(.small).tint(.white) } else { Image(systemName: "arrow.down.square") }
                         Text("Import Theme")
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(PrimaryButtonStyle(useFullWidth: false))
                 .disabled(isDownloading)
             }
             .padding()
         }
         .background(.thinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .clipShape(Rectangle())
     }
 
     private var placeholder: some View {

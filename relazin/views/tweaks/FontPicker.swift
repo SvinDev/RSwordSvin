@@ -359,16 +359,16 @@ private struct repoemojirow: View {
         } label: {
             HStack {
                 Text(emoji.name)
-				if let remoteurl = URL(string: emoji.url),
-           			remoteurl.pathExtension.lowercased() != "ttc" {
-            		Text("not .ttc")
-                	.font(.caption2)
-                	.foregroundColor(.red)
-                	.padding(.horizontal, 5)
-                	.padding(.vertical, 2)
-                	.background(Color.red.opacity(0.1))
-                	.clipShape(Capsule())
-        		}
+                if let remoteurl = URL(string: emoji.url),
+                   remoteurl.pathExtension.lowercased() != "ttc" {
+                    Text("not .ttc")
+                        .font(.caption2)
+                        .foregroundColor(.red)
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 2)
+                        .background(Color.red.opacity(0.1))
+                        .clipShape(Rectangle())
+                }
                 Spacer()
                 if repostore.downloading.contains(emoji.url) {
                     ProgressView()
@@ -398,7 +398,7 @@ struct FontRepoView: View {
                                     ProgressView()
                                 }
                                 .frame(width: 32, height: 32)
-                                .clipShape(Circle())
+                                .clipShape(Rectangle())
                             } else {
                                 ProgressView()
                             }

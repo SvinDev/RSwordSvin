@@ -67,12 +67,12 @@ struct JitView: View {
                                     Image(uiImage: icon)
                                         .resizable()
                                         .frame(width: 40, height: 40)
-                                        .clipShape(RoundedRectangle(cornerRadius: 9))
+                                        .clipShape(Rectangle())
                                 } else {
                                     Image("unknown")
                                         .resizable()
                                         .frame(width: 40, height: 40)
-                                        .clipShape(RoundedRectangle(cornerRadius: 9))
+                                        .clipShape(Rectangle())
                                 }
 
                                 VStack(alignment: .leading) {

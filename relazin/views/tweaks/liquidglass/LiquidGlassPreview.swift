@@ -18,7 +18,7 @@ struct LiquidGlassPreview: View {
                     .foregroundStyle(.white)
                     .frame(width: 45, height: 45)
                     .background(.blue)
-                    .clipShape(.rect(cornerRadius: 14))
+                    .clipShape(Rectangle())
                 VStack(alignment: .leading) {
                     Text("App Notification")
                         .fontWeight(.medium)
@@ -47,7 +47,7 @@ struct LiquidGlassPreview: View {
             }
             .padding(.horizontal, 30)
             
-            Capsule()
+            Rectangle()
                 .frame(width: 145, height: 4)
         }
         .foregroundStyle(.white)
@@ -72,16 +72,16 @@ struct ActionBG: ViewModifier {
             if lgFallback && !lgDisabled {
                 content
                     .background(Color(.systemGray))
-                    .clipShape(.capsule)
+                    .clipShape(Rectangle())
             } else {
                 content
                     .background(.ultraThinMaterial)
-                    .clipShape(.capsule)
+                    .clipShape(Rectangle())
             }
         } else {
             if #available(iOS 19.0, *) {
                 content
-                    .glassEffect(.clear.interactive(), in: .capsule)
+                    .glassEffect(.clear.interactive(), in: Rectangle())
             }
         }
     }
@@ -96,16 +96,16 @@ struct NotificationBG: ViewModifier {
             if lgFallback && !lgDisabled {
                 content
                     .background(Color(.systemGray))
-                    .clipShape(.rect(cornerRadius: 26))
+                    .clipShape(Rectangle())
             } else {
                 content
                     .background(.black)
-                    .clipShape(.rect(cornerRadius: 26))
+                    .clipShape(Rectangle())
             }
         } else {
             if #available(iOS 19.0, *) {
                 content
-                    .glassEffect(.clear, in: .rect(cornerRadius: 26))
+                    .glassEffect(.clear, in: Rectangle())
             }
         }
     }

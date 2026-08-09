@@ -42,7 +42,7 @@ public struct PlainToggle: View {
                         Button(action: {
                             Alertinator.shared.alert(title: infoTitle, body: infoMessage)
                         }) {
-                            Image(systemName: infoType == .info ? "info.circle" : "exclamationmark.triangle")
+                            Image(systemName: infoType == .info ? "info.square" : "exclamationmark.triangle")
                         }
                         .buttonStyle(.plain)
                         .padding(.trailing, 6)
@@ -52,4 +52,3 @@ public struct PlainToggle: View {
         }
     }
 }
-

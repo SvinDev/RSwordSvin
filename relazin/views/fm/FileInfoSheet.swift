@@ -70,7 +70,7 @@ struct santanderinfosheet: View {
                     }
                 }
                 
-                Section(header: HeaderLabel(text: "File Information", icon: "info.circle")) {
+                Section(header: HeaderLabel(text: "File Information", icon: "info.square")) {
                     LabeledContent("UTType") {
                         Text(file.uttype)
                     }

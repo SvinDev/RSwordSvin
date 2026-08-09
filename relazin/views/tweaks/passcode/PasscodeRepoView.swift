@@ -39,7 +39,7 @@ struct PasscodeRepoView: View {
                                     }
                                 }
                                 .frame(width: 42, height: 42)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .clipShape(Rectangle())
                             }
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(repo.data?.name ?? repo.url)

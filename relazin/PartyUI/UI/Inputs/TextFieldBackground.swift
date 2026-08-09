@@ -12,7 +12,7 @@ public struct TextFieldBackground: ViewModifier {
     var useFullWidth: Bool
     @Environment(\.isEnabled) private var isEnabled
     
-    public init(foregroundStyle: Color = .accentColor, shape: Shape = .rect(cornerRadius: cornerRad.component), useFullWidth: Bool = true) {
+    public init(foregroundStyle: Color = .accentColor, shape: Shape = Rectangle(), useFullWidth: Bool = true) {
         self.shape = shape
         self.useFullWidth = useFullWidth
     }

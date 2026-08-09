@@ -819,7 +819,7 @@ struct IconThemeFixupView: View {
                 Button(manager.isFixingUp ? "Please wait" : "Close") {
                     manager.dismissFixupSheet()
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(PrimaryButtonStyle(useFullWidth: false))
                 .disabled(manager.isFixingUp)
                 .padding(.bottom)
             }

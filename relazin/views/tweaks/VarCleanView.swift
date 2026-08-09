@@ -79,7 +79,7 @@ struct VarCleanView: View {
                                     }
                                     Spacer()
                                     if cleanupok {
-                                        Image(systemName: item.isselected ? "checkmark.circle.fill" : "circle")
+                                        Image(systemName: item.isselected ? "checkmark.square.fill" : "square")
                                             .foregroundColor(item.isselected ? .red : .secondary)
                                     }
                                 }

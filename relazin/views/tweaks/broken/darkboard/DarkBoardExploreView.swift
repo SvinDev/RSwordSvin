@@ -61,11 +61,11 @@ struct DarkBoardExploreView: View {
                     }
                 }
             } label: {
-                Label(filter.rawValue, systemImage: "line.3.horizontal.decrease.circle")
+                Label(filter.rawValue, systemImage: "line.3.horizontal.decrease")
                     .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .background(.thinMaterial)
-                    .clipShape(Capsule())
+                    .clipShape(Rectangle())
             }
             Spacer()
             if gallery.isLoading {
@@ -90,12 +90,12 @@ struct DarkBoardExploreView: View {
                         updateDisplayedThemes()
                     }
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(PrimaryButtonStyle(useFullWidth: false))
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(.thinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 18))
+            .clipShape(Rectangle())
         } else if displayedThemes.isEmpty && gallery.isLoading {
             VStack(spacing: 12) {
                 ProgressView()
@@ -189,7 +189,7 @@ private struct GalleryThemeCard: View {
                         } else {
                             Image(systemName: isImported
                                   ? "arrow.triangle.2.circlepath"
-                                  : "arrow.down.circle")
+                                  : "arrow.down.square")
                         }
 
                         Text(isImported ? "Reimport Theme" : "Import Theme")
@@ -197,14 +197,14 @@ private struct GalleryThemeCard: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 10)
                 }
-                .buttonStyle(.borderedProminent)
+                .buttonStyle(PrimaryButtonStyle(useFullWidth: false))
                 .disabled(isDownloading)
                 .contentShape(Rectangle())
             }
             .padding()
         }
         .background(.thinMaterial)
-        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .clipShape(Rectangle())
     }
 
     private var previewPlaceholder: some View {

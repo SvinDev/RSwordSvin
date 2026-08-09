@@ -41,6 +41,7 @@ struct relazin: App {
         WindowGroup {
             TerminalRootView()
             .environmentObject(mgr)
+            .toggleStyle(SquareToggleStyle())
             .overlay {
                 if mgr.showrespring {
                     respringview()

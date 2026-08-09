@@ -13,7 +13,7 @@ public struct PrimaryButtonStyle: PrimitiveButtonStyle {
     var useFullWidth: Bool
     @Environment(\.isEnabled) private var isEnabled
     
-    public init(color: Color = .accentColor, foregroundStyle: Color = .accentColor, shape: Shape = .rect(cornerRadius: cornerRad.component), useFullWidth: Bool = true) {
+    public init(color: Color = .accentColor, foregroundStyle: Color = .accentColor, shape: Shape = Rectangle(), useFullWidth: Bool = true) {
         self.color = color
         self.shape = shape
         self.useFullWidth = useFullWidth
@@ -30,4 +30,3 @@ public struct PrimaryButtonStyle: PrimitiveButtonStyle {
             .modifier(FadeAnimation())
     }
 }
-

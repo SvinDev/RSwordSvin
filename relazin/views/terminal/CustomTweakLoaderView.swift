@@ -107,7 +107,7 @@ struct CustomTweakLoaderView: View {
 
     private var statusline: some View {
         HStack(spacing: 8) {
-            Circle()
+            Rectangle()
                 .fill(tweakengine.isReady ? terminal.green : terminal.red)
                 .frame(width: 8, height: 8)
             Text(tweakengine.isReady ? "remotecall ready" : "remotecall not ready — run exploit first")

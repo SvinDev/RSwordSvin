@@ -8,17 +8,36 @@
 import SwiftUI
 
 public enum cornerRad {
-    public static var component: CGFloat {
-        if #available(iOS 19.0, *) { return 18 } else { return 12 }
-    }
-    public static var platter: CGFloat {
-        if #available(iOS 19.0, *) { return 26 } else { return 18 }
-    }
-    public static var sPlatter: CGFloat {
-        if #available(iOS 19.0, *) { return 16 } else { return 12 }
-    }
-    public static var terminal: CGFloat {
-        if #available(iOS 19.0, *) { return 24 } else { return 18 }
+    public static let component: CGFloat = 0
+    public static let platter: CGFloat = 0
+    public static let sPlatter: CGFloat = 0
+    public static let terminal: CGFloat = 0
+}
+
+public struct SquareToggleStyle: ToggleStyle {
+    public init() {}
+
+    public func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 12) {
+            configuration.label
+            Spacer(minLength: 12)
+            Button {
+                configuration.isOn.toggle()
+            } label: {
+                ZStack {
+                    Rectangle()
+                        .stroke(configuration.isOn ? Color.accentColor : Color.secondary, lineWidth: 2)
+                        .frame(width: 24, height: 24)
+                    if configuration.isOn {
+                        Rectangle()
+                            .fill(Color.accentColor)
+                            .frame(width: 14, height: 14)
+                    }
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        }
     }
 }
 
