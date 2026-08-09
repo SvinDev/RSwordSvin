@@ -22,7 +22,7 @@ jobs:
 
       - name: Build
         run: |
-          set -euo pipefail
+          set -uo pipefail
           xcodebuild \
             -project relazin.xcodeproj \
             -scheme relazin \
@@ -32,4 +32,16 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
-            clean build analyze
+            clean build analyze 2>&1 | tee xcodebuild.log
+          build_status=${PIPESTATUS[0]}
+
+          if [ "$build_status" -ne 0 ]; then
+            grep -E '(^| )(error:|fatal error:|duplicate symbol|Undefined symbols|ld:|clang:)' xcodebuild.log \
+              | tail -n 100 \
+              | while IFS= read -r line; do
+                  line="${line//'%'/'%25'}"
+                  line="${line//$'\r'/'%0D'}"
+                  echo "::error::$line"
+                done
+            exit "$build_status"
+          fi
