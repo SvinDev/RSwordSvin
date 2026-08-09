@@ -53,15 +53,13 @@ The resulting package is written to `build/relazin.ipa`.
 
 ## Preview
 
-<p align="center">
-  <img src="assets/screenshot.png" alt="Relazin running on iOS" width="340">
-</p>
+nothing..
 
 ## Credits
 
 - [SvinDev](https://github.com/SvinDev) — maintainer and Relazin integration
-- The Lara team and Cyanide contributors — core functionality and tweak engine
-- The upstream developers credited in the app and third-party license files
+-
+— 
 - ChatGPT 5.6 Sol — development, integration, and CI debugging assistance
 
 This project was developed with assistance from ChatGPT 5.6 Sol.
